@@ -34,7 +34,6 @@ h1.title a {
 .nav ul {
     list-style-type: none;
     padding: 0px;
-    /* background: ?? */
     margin: 0;
     display:flex;
     justify-content:center;
