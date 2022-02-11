@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+        
+        <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">	
+
+        <title>Desserts Express</title>
+        <link rel = "stylesheet" type = "text/css" href= "style.css">
+
+        <style type = "text/css">
+            .menu_wrapper {
+                display: block;
+            }
+            .menu_container {
+                margin-top: 30px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .menubox {
+                position: relative;
+                text-align: center;
+            }
+
+            p.menubox {
+                text-align: center;
+                position: absolute;
+            }
+
+            h1.menu {
+                font-size: 70px;
+                text-align: center;
+            }
+            
+            img {
+                width: 400px;
+                height: 400px;
+                margin: 20px;
+            }
+
+            img:hover {
+                opacity: 0.5;
+            }
+
+            @media (max-width: 800px) {
+                .menu_container {
+                margin-top: 30px;
+                display: inline;
+                }
+
+                h1.menu {
+                font-size: 50px;
+                text-align: center;
+                }
+                
+            }
+
+        </style>
+    </head>
+    <body>
+        <!--Nav Bar-->
+        <div class = "nav">
+            <ul>
+                <li><a href = "index.html">Home</a></li>
+                <li><a href = "services.html">Services</a></li>
+                <li><a href = "contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <section>
+            <h1 class = "menu">Menu</h1>
+            <div class = "menu_wrapper">
+                <div class = "menu_container">
+                    <div class = "menubox">
+                        <img src = "dessert_1.jpg" alt = "hungry">
+                        <p>Mille Feuille</p>
+                    </div>
+                    <div class = "menubox">
+                        <img src = "dessert_8.jpg" alt = "hungry">
+                        <p>Fondant au Chocolat</p>
+                    </div>
+                </div>
+                <div class = "menu_container">
+                    <div class = "menubox">
+                        <img src = "dessert_3.jpg" alt = "hungry">
+                        <p>Cheese Cake</p>
+                    </div>
+                    <div class = "menubox">
+                        <img src = "dessert_4.jpg" alt = "hungry">
+                        <p>Opera Cake</p>
+                    </div>
+                </div>
+                <div class = "menu_container">
+                    <div class = "menubox">
+                        <img src = "dessert_5.jpg" alt = "hungry">
+                        <p>Creme Brulee</p>
+                    </div>
+                    <div class = "menubox">
+                        <img src = "dessert_6.jpg" alt = "hungry">
+                        <p>Eclair</p>
+                    </div>
+                </div>
+        </div> 
+        <!--footer-->
+        <footer> 
+            <hr>
+            2020 DESSSERT EXPRESS All Rights Reserved
+        </footer>
+        </section>
+    </body>
+</html>
