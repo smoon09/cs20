@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href = "songlist.css"?>
+
+<songlist>
+    <song>
+        <title>Bad Habits</title>
+        <artist>Ed Sheeran</artist>
+        <genre>Synth-Pop</genre>
+        <year>2021</year>
+    </song>
+
+    <song>
+        <title>Stay</title>
+        <artist>The Kid LAROI, Justin Bieber</artist>
+        <genre>Pop-Rock</genre>
+        <year>2020</year>
+    </song>
+
+    <song>
+        <title>2002</title>
+        <artist>Anne Marie</artist>
+        <genre>Dance-Pop</genre>
+        <year>2018</year>
+    </song>
+
+    <song>
+        <title>Ashes</title>
+        <artist>Stellar</artist>
+        <genre>Space-Rock</genre>
+        <year>2020</year>
+    </song>
+
+    <song>
+        <title>Bad Guy</title>
+        <artist>Billie Eilish</artist>
+        <genre>Dance-Pop</genre>
+        <year>2019</year>
+    </song>
+
+    <song>
+        <title>Savage Love</title>
+        <artist>Jason Derulo, Jawsh 685</artist>
+        <genre>Pop</genre>
+        <year>2020</year>
+    </song>
+
+    <song>
+        <title>Parachute</title>
+        <artist>John K</artist>
+        <genre>Pop</genre>
+        <year>2020</year>
+    </song>
+
+    <song>
+        <title>Believer</title>
+        <artist>Imagine Dragons</artist>
+        <genre>Pop-Rock</genre>
+        <year>2017</year>
+    </song>
+
+    <song>
+        <title>Checklist</title>
+        <artist>MAX (Feat, Chromeo)</artist>
+        <genre>Dance-Pop</genre>
+        <year>2019</year>
+    </song>
+
+    <song>
+        <title>Eight</title>
+        <artist>IU</artist>
+        <genre>K-Pop</genre>
+        <year>2020</year>
+    </song>
+
+    <song>
+        <title>Bad</title>
+        <artist>Christopher</artist>
+        <genre>Electronic-Pop</genre>
+        <year>2019</year>
+    </song>
+
+</songlist>

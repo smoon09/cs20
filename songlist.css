@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nothing+You+Could+Do&family=Open+Sans+Condensed:wght@300&family=Shizuru&family=Tillana&family=Titillium+Web:wght@200&display=swap');
+
+songlist {
+    text-align: center;
+    display: block;
+    background-color:black;
+    width:30%;
+    margin: 2% auto 5% auto;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+song {
+    display: block;
+    border-bottom: 1px solid white;
+    color:white;
+    padding-bottom: 3%;  
+    padding-top: 3%;  
+}
+
+title {
+    display: block;
+    font-size: 35px;   
+    font-family: 'Titillium Web', sans-serif;
+}
+
+artist {
+    display: block;
+    font-size: 24px;
+}
+
+genre {
+    display: block;
+    font-size: 19px;
+    font-family: 'Nothing You Could Do', cursive;
+}
+
+year {
+    display: block;
+    font-size: 18px;
+    font-family: 'Tillana', cursive;
+}
