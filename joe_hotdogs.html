@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Joe's Hotdog Stand</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">	
+
+        <style>
+
+        ul {
+            column-count: 2;
+            list-style-type: none;
+        }
+
+        li {
+            padding-bottom: 6px;
+        }
+
+        .row {
+            text-align: center;
+            width: 40%;
+            margin: auto;
+            font-size: 22px;
+        }
+
+        h1 {
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .row {
+            font-size: 18px;
+            }    
+        }
+        
+        </style>
+    </head>
+
+    <body>
+    <div class = "row">
+        <h1>Your Order</h1>
+        <ul class = "column">
+            <li>Hotdogs</li>
+            <li>Fries</li>
+            <li>Sodas</li>
+            <li>Subtotal</li>
+            <li>Discount</li>
+            <li>Subtotal</li>
+            <li>Tax</li>
+            <li><strong>TOTAL</strong></li>
+            <li id = "num_hotdogs"></li>
+            <li id = "num_fries"></li>
+            <li id = "num_sodas"></li>
+            <li id = "subtotal_b"></li>
+            <li id = "discount"></li>
+            <li id = "subtotal_a"></li>
+            <li id = "tax"></li>
+            <li id = "total"></li>
+        </ul>
+    </div>
+    </body>
+
+    <script language = "javascript">
+        var hotdogs = prompt("How many hotdogs do you want?");
+        var fries = prompt("How many fries do you want?");
+        var sodas = prompt("How many sodas do you want?");
+
+        var pr_hotdogs = 3.75;
+        var pr_fries = 2.00;
+        var pr_sodas = 1.80;
+
+        var tax = 1.0625;
+        var special = 0.90;
+
+        document.getElementById("num_hotdogs").innerHTML = hotdogs;
+        document.getElementById("num_fries").innerHTML= fries;
+        document.getElementById("num_sodas").innerHTML = sodas;
+
+        var subtotal = (hotdogs * pr_hotdogs) + (fries * pr_fries) + (sodas *  pr_sodas);
+        var discount = "None";
+
+        document.getElementById("subtotal_b").innerHTML = "$" + subtotal.toFixed(2);
+       
+        if (subtotal >= 20) {
+            subtotal *= special;
+            discount = "10% off";
+        }
+
+        var total = subtotal * tax;
+
+        document.getElementById("discount").innerHTML = discount;
+        document.getElementById("subtotal_a").innerHTML = "$" + subtotal.toFixed(2);
+        document.getElementById("tax").innerHTML = "6.25%"
+        document.getElementById("total").innerHTML = "$" + total.toFixed(2);
+
+    </script>
+</html>
