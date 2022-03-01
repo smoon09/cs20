@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lottery Simulator</title>
+
+        <style>
+
+        </style>
+
+    </head>
+    <body>        
+
+        <div id = "front_page">
+            <h1>Lottery Simulator</h1>
+            <input type="button" value="Run" id="btn" onclick="main()">
+        </div>
+
+        <div id = "result">
+            <h2>Your Info</h2>
+            <h3>Your pick before sorting: </h3>
+            <p id = "pick_b"></p>
+            <h3>Your pick after sorting: </h3>
+            <p id = "pick_a"></p>
+            <h3>Your Lucky Ball: </h3>
+            <p id = "lucky_ball"></p>
+            <h2>Winning Info: </h2>
+            <h3>Winning Pick: </h3>
+            <p id = "winning_pick"></p>
+            <h3>Winning Lucky Ball: </h3>
+            <p id = "winning_luck"></p>
+            <h2>Result: </h2>
+            <p id = "pick_result"></p>
+            <p id = "lucky_result"></p>
+            <h2>Payment: </h2>
+            <p id = "prize_info"></p>
+
+
+        </div>
+
+        <script language="javascript">
+        let lotto = [];
+        let match_luck = false;
+        var count = 0;
+
+
+        function main() {
+
+            lotto = lotto_maker();
+
+            count = check_pickmatch(lotto);
+
+            document.getElementById("pick_result").innerHTML = "You have " + count + " pick matched the winning numbers";
+
+            if (lotto[5] == 3) {
+                match_luck = true;
+            }
+            else {
+                match_luck = false;
+            }
+
+            if (match_luck) {
+                document.getElementById("lucky_result").innerHTML = "You got the lucky ball";
+            }
+            else {
+                document.getElementById("lucky_result").innerHTML = "You did not get the lucky ball";
+            }
+            check_win();
+
+
+
+        }
+
+        function lotto_maker() {
+
+            let lotto_arr = [];
+
+            for (var i = 0; i < 5; i++) {
+
+                let pick_num = Math.floor((Math.random() * 48) + 1);
+                
+                if (lotto_arr.includes(pick_num)) {
+                    i--;
+                }
+                else {
+                    lotto_arr.push(pick_num);
+                }
+            }
+
+            document.getElementById("pick_b").innerHTML = lotto_arr;
+
+            //sort pick numbers
+            lotto_arr.sort(sort_arr);
+
+            document.getElementById("pick_a").innerHTML = lotto_arr;
+
+
+            //store luckyball
+            let lucky_ball = Math.floor((Math.random() * 18) + 1);
+            lotto_arr.push(lucky_ball);
+            document.getElementById("lucky_ball").innerHTML = lucky_ball;
+
+
+            return lotto_arr;
+        }
+
+
+        function sort_arr(a,b) {
+            return a - b;
+        }
+
+        function check_pickmatch() {
+            var count_tem = 0;
+
+            for (var i = 0; i < 5; i++) {
+                var elem = lotto[i];
+                if (check_match(elem)) {
+                    count_tem++;
+                }
+            }
+            return count_tem;
+        }
+
+        function check_match(elem) {
+            let winning_combi = [12, 15, 24, 35, 48];
+            document.getElementById("winning_pick").innerHTML = winning_combi;
+            document.getElementById("winning_luck").innerHTML = "3";
+
+            return winning_combi.includes(elem);
+            
+        }
+
+        function check_win() {
+            if (count == 5 && match_luck) {
+                document.getElementById("prize_info").innerHTML = "$7,000 a WEEK for LIFE";
+            }
+            else if (count == 5 && !match_luck) {
+                document.getElementById("prize_info").innerHTML = "$25,000 a YEAR for LIFE";
+            }
+            else if (count == 4 && match_luck) {
+                document.getElementById("prize_info").innerHTML = "$5,000";
+            }
+            else if (count == 4 && !match_luck) {
+                document.getElementById("prize_info").innerHTML = "$200";
+            }
+            else if (count == 3 && match_luck) {
+                document.getElementById("prize_info").innerHTML = "$150";
+            }
+            else if (count == 3 && !match_luck) {
+                document.getElementById("prize_info").innerHTML = "$20";
+            }
+            else if (count == 2 && match_luck) {
+                document.getElementById("prize_info").innerHTML = "$25";
+            }
+            else if (count == 2 && !match_luck) {
+                document.getElementById("prize_info").innerHTML = "$3";
+            }
+            else if (count == 1 && match_luck) {
+                document.getElementById("prize_info").innerHTML = "$6";
+            }
+            else if (count == 0 && match_luck) {
+                document.getElementById("prize_info").innerHTML = "$4";
+            }
+            else {
+                document.getElementById("prize_info").innerHTML = "Sorry. You did not win the prize";
+
+            }
+
+        }
+
+        </script>
+
+    </body>
+</html>
