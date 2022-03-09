@@ -35,8 +35,8 @@
            let num2_factor = [];
            num2_factor = calcFactors(num2);
 
-           document.getElementById("factor1").innerHTML = "Factors of " + num1 + " is : " + num1_factor;
-           document.getElementById("factor2").innerHTML = "Factors of " + num2 + " is : " + num2_factor;
+           document.getElementById("factor1").innerHTML = "Factors of " + num1 + " is: " + num1_factor;
+           document.getElementById("factor2").innerHTML = "Factors of " + num2 + " is: " + num2_factor;
 
            if (calcAmicable(num1, num2_factor) && calcAmicable(num2, num1_factor)){
                document.getElementById("isAmicable").innerHTML = "The numbers: " + num1 + " and " + num2 + " are amicable";
