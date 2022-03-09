@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Amicable Numbers</title>
+    </head>
+    <body>        
+
+        <div id = "front_page">
+                <form name = "number_form">
+                Number 1:
+                <input type = "text" id="num_1"><br /><br />
+                Number 2: 
+                <input type = "text" id= "num_2"><br /><br />
+                <input type = "button" value = "find" onclick = "main()">
+                </form>
+        </div>
+
+        <div id = "result">
+            <p id = "isAmicable"></p>
+        </div>
+
+        <div id = "factor_list">
+            <p id = "factor1"></p>
+            <p id = "factor2"></p>
+        </div>
+
+        <script language="javascript">
+       
+       function main(){
+           var num1 = document.getElementById("num_1").value;
+           var num2 = document.getElementById("num_2").value;
+
+           let num1_factor = [];
+           num1_factor = calcFactors(num1);
+           let num2_factor = [];
+           num2_factor = calcFactors(num2);
+
+           document.getElementById("factor1").innerHTML = "Factors of " + num1 + " is : " + num1_factor;
+           document.getElementById("factor2").innerHTML = "Factors of " + num2 + " is : " + num2_factor;
+
+           if (calcAmicable(num1, num2_factor) && calcAmicable(num2, num1_factor)){
+               document.getElementById("isAmicable").innerHTML = "The numbers " + num1 + " and " + num2 + " are amicable";
+           } else {
+               document.getElementById("isAmicable").innerHTML = "The numbers " + num1 + " and " + num2 + " are not amicable";
+           }
+       }
+
+        function calcAmicable(x, arr) {
+           var sum = 0;
+           arr.forEach(n => {sum += n});
+           
+           return sum == x;
+       }
+
+       function calcFactors(n){
+           let arr = [];
+
+           for (var i = 1; i < n; i++) {
+               if (isAFactor(n,i)) {
+                   arr.push(i);
+               }
+           }
+        return arr;
+       }
+
+       function isAFactor(x,y) {
+           return x % y == 0;
+       }
+
+        </script>
+
+    </body>
+</html>
