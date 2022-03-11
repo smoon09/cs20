@@ -17,13 +17,13 @@ function calc_receipt() {
 }
 
 function display_receipt() {
-    hd = localStorage.getItem("hotdog_qty");
-    fr = localStorage.getItem("fries_qty");
-    sd = localStorage.getItem("sodas_qty");
+    h = localStorage.getItem("hotdog_qty");
+    f = localStorage.getItem("fries_qty");
+    d = localStorage.getItem("sodas_qty");
 
-    document.getElementById("num_hotdogs").innerHTML = hd;
-    document.getElementById("num_fries").innerHTML = fr;
-    document.getElementById("num_sodas").innerHTML = sd;
+    document.getElementById("num_hotdogs").innerHTML = h;
+    document.getElementById("num_fries").innerHTML = f;
+    document.getElementById("num_sodas").innerHTML = d;
 
     var pr_hotdogs = 3.75;
     var pr_fries = 2.00;
@@ -32,7 +32,7 @@ function display_receipt() {
     var tax = 1.0625;
     var special = 0.90;
     
-    var subtotal = (hd * pr_hotdogs) + (fr * pr_fries) + (sd *  pr_sodas);
+    var subtotal = (h * pr_hotdogs) + (f * pr_fries) + (d *  pr_sodas);
     var discount = "None";
 
 
