@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jump</title>
+    </head>
+    <body>        
+<div id = "front_page">
+    <form name = "jump_form">
+        <input type = "text" id = "left">
+        <input type = "button" value = "Jump >" id = "btn" onclick = "jump()">
+        <input type = "text" id = "right">
+    </form>
+</div>
+
+<script language = "javascript">
+    var left_arrow = "< Jump";
+    var right_arrow = "Jump >";
+
+    function jump() {
+        var left_num = document.getElementById("left").value;
+        var right_num = document.getElementById("right").value;
+
+        document.getElementById("left").value = right_num;
+        document.getElementById("right").value = left_num;
+
+        var curr_arrow = document.getElementById("btn").value;
+
+        curr_arrow == left_arrow ? curr_arrow = right_arrow: curr_arrow = left_arrow;
+        document.getElementById("btn").value = curr_arrow;
+        
+
+    }
+</script>

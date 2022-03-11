@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Checkbox</title>
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+    </head>
+    <body> 
+       
+<div id = "front_page">
+    <form name = "jump_form">
+        <input type = "checkbox" id = "checkAll" onclick = "main(this)">
+        <span>Check All</span> <br \>
+        <input type = "checkbox" name = 'box'> 
+        <label for = "first">First</label> <br \>
+        <input type = "checkbox" name = 'box'>
+        <label for = "second">Second</label> <br \>
+        <input type = "checkbox" name = 'box'>
+        <label for = "third">Third</label> <br \>
+        <input type = "checkbox" name = 'box'>
+        <label for = "fourth">Fourth</label> <br \>
+    </form>
+</div>
+
+<script language = "javascript">
+
+    function main(x) {
+
+        var counter = 0;
+
+        if ($(x).prop("checked")) {
+            check_all(x);
+            $("span").html("Uncheck All");
+            
+        }
+        else {
+            uncheck_all(x);
+            $("span").html("Check All");
+        }
+
+        $("input[name='box']").click (function () {
+            counter = 0;
+            $("input[name='box']").each(function(){
+                if(!this.checked) {
+                    $(x).prop('checked', false);
+                    $("span").html("Check All");
+                    counter += 0;
+                }
+                else {
+                    counter += 1;
+                }
+        });
+        
+        if (counter == 4) {
+            $(x).prop('checked', true);
+            $("span").html("Uncheck All");
+        }
+            
+        })
+
+    }
+
+    function check_all(x) {
+        $("input[name='box']").each(function(){
+            $(this).prop('checked', $(x).prop('checked'));
+        });
+        }
+
+    function uncheck_all(x) {
+        $("input[name='box']").each(function(){
+            $(this).prop('checked', false), $(x).prop('checked', false);
+        });
+    }
+    
+</script>
