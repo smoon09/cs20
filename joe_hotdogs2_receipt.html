@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Receipt</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1.0, user-scalable=0">	
+
+        <style>
+
+        ul {
+            column-count: 2;
+            list-style-type: none;
+        }
+
+        li {
+            padding-bottom: 6px;
+        }
+
+        .row {
+            text-align: center;
+            width: 40%;
+            margin: auto;
+            font-size: 22px;
+        }
+
+        h1 {
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .row {
+            font-size: 18px;
+            }    
+        }
+        
+        </style>
+
+    <script language="javascript" src="hotdogs2.js"></script>
+
+    </head>
+
+    
+    <body onload = "display_receipt()">
+    <div class = "row">
+        <h1>Your Order</h1>
+        <ul class = "column">
+            <li>Hotdogs</li>
+            <li>Fries</li>
+            <li>Sodas</li>
+            <li>Subtotal</li>
+            <li>Discount</li>
+            <li>Subtotal</li>
+            <li>Tax</li>
+            <li><strong>TOTAL</strong></li>
+            <li id = "num_hotdogs"></li>
+            <li id = "num_fries"></li>
+            <li id = "num_sodas"></li>
+            <li id = "subtotal_b"></li>
+            <li id = "discount"></li>
+            <li id = "subtotal_a"></li>
+            <li id = "tax"></li>
+            <li id = "total"></li>
+        </ul>
+    </div>
+
+    </body>
+</html>

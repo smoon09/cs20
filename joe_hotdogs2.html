@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Joe's Hotdog Stand</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+
+            .menu {
+                display: block;
+                margin: auto;
+                text-align: center;
+                width:30%;
+            }
+            
+            .item {
+                display: block;
+                border-bottom: 1px solid black;
+                padding-bottom: 3%;  
+                padding-top: 3%;
+            }
+            .item_ex {
+                display: block;
+                padding-bottom: 3%;  
+                padding-top: 3%;
+            }
+
+            h1 {
+                text-align: center;
+            }
+
+            h3 {
+                text-align: center;
+            }
+
+        </style>
+
+    </head>
+    <body>       
+    <h1>Joe's Hotdog Stand</h1>
+    <h3>Place your order</h3>
+    <script language="javascript" src="hotdogs2.js"></script>
+    <form name = "order_page" action="joe_hotdogs2_receipt.html" target = "_blank" method = "post" onsubmit = "return calc_receipt()">
+        <div class = "menu" >
+        <div class = "item" >
+        <label>Hotdog ($3.75 each): </label>
+        <select id = "hotdogs">
+            <option	value = "0">0</option>
+            <option	value = "1">1</option>
+            <option	value = "2">2</option>
+            <option	value = "3">3</option>
+            <option	value = "4">4</option>
+            <option	value = "5">5</option>
+            <option	value = "10">10</option>
+            <option	value = "15">15</option>
+            <option	value = "20">20</option>
+        </select><br \>
+        </div>
+        <div class = "item" >
+        <label>Fries ($2.00 each): </label>
+        <select id = "fries">
+            <option	value = "0">0</option>
+            <option	value = "1">1</option>
+            <option	value = "2">2</option>
+            <option	value = "3">3</option>
+            <option	value = "4">4</option>
+            <option	value = "5">5</option>
+            <option	value = "10">10</option>
+            <option	value = "15">15</option>
+            <option	value = "20">20</option>
+        </select><br \>
+        </div>
+        <div class = "item_ex" >
+        <label>Sodas ($1.80 each): </label>
+        <select id = "sodas">
+            <option	value = "0">0</option>
+            <option	value = "1">1</option>
+            <option	value = "2">2</option>
+            <option	value = "3">3</option>
+            <option	value = "4">4</option>
+            <option	value = "5">5</option>
+            <option	value = "10">10</option>
+            <option	value = "15">15</option>
+            <option	value = "20">20</option>
+        </select><br \>
+        </div>
+        <input type = "submit" value = "Submit">
+    </div>
+    </form>
+</script>
