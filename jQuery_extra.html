@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JQuery Extra Credit</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100&display=swap');
+
+            body {
+                background-color: black;
+            }
+           #wrapper {
+               text-align: center;
+           }
+           h1, h2 {
+               color: white;
+               font-family: 'Smooch Sans', sans-serif;
+           }
+
+           h1 {
+               font-size: 36px;
+           }
+
+           h2 {
+               font-size: 25px;
+           }
+        </style>
+    </head>
+    <body>    
+        <div id = "wrapper">
+        <h1>JQuery Extra Credit</h1>
+        <h2>Night Sky</h2>
+        <div id = "display_imgs">
+            <img src = "images/img1.jpg">
+        </div>
+        <input type = "button" id = "start_button" value = "Start">
+        <input type = "button" id = "stop_button" value = "Stop">
+        </div>
+
+        <script language = "javascript">
+            img_arr = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg"];
+            var currIndex = 0;
+
+            function fadeInImg() {
+                currIndex++;
+                currIndex = currIndex % img_arr.length;
+                $("#display_imgs img").attr("src", "images/"+img_arr[currIndex]);
+                $("#display_imgs img").fadeIn(3000,fadeOutImg);
+            }
+    
+            function fadeOutImg() {
+                $("#display_imgs img").fadeOut(3000,fadeInImg)
+    
+            }
+    
+            function stop_display() {
+                $("#display_imgs img").stop().fadeIn();
+            }
+
+            $(document).ready(function() {
+                $("#start_button").click(fadeOutImg);
+                $("#stop_button").click(stop_display);
+            })
+            
+            </script> 
+    </body>       
