@@ -21,9 +21,9 @@ function display_receipt() {
     fr = valueStored.getItem("fries_qty");
     sd = valueStored.getItem("sodas_qty");
 
-    document.getElementById("num_hotdogs").innerHTML = h;
-    document.getElementById("num_fries").innerHTML = f;
-    document.getElementById("num_sodas").innerHTML = d;
+    document.getElementById("num_hotdogs").innerHTML = hd;
+    document.getElementById("num_fries").innerHTML = fr;
+    document.getElementById("num_sodas").innerHTML = sd;
 
     var pr_hotdogs = 3.75;
     var pr_fries = 2.00;
