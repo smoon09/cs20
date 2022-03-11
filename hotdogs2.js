@@ -32,7 +32,7 @@ function display_receipt() {
     var tax = 1.0625;
     var special = 0.90;
     
-    var subtotal = (h * pr_hotdogs) + (f * pr_fries) + (d *  pr_sodas);
+    var subtotal = (hd * pr_hotdogs) + (fr * pr_fries) + (sd *  pr_sodas);
     var discount = "None";
 
 
