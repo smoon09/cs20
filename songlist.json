@@ -1,20 +1,20 @@
 [{
-    "artist": "Bad Habits",
-    "title": "Ed Sheeran",
+    "title": "Bad Habits",
+    "artist": "Ed Sheeran",
     "genre": "Synth-Pop",
     "year": "2021" 
 },
 
 {
-    "artist": "Stay",
-    "title": "The Kid LAROI, Justin Bieber",
+    "title": "Stay",
+    "artist": "The Kid LAROI, Justin Bieber",
     "genre": "Pop-Rock",
     "year": "2020" 
 },
 
 {
-    "artist": "2002",
-    "title": "Anne Marie",
+    "title": "2002",
+    "artist": "Anne Marie",
     "genre": "Dance-Pop",
     "year": "2018" 
 },
