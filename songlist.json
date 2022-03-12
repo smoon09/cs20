@@ -20,57 +20,57 @@
 },
 
 {
-    "artist": "Ashes",
-    "title": "Stellar",
+    "title": "Ashes",
+    "artist": "Stellar",
     "genre": "Space-Rock",
     "year": "2020" 
 },
 
 {
-    "artist": "Bad Guy",
-    "title": "Billie Eilish",
+    "title": "Bad Guy",
+    "artist": "Billie Eilish",
     "genre": "Dance-Pop",
     "year": "2019" 
 },
 
 {
-    "artist": "Savage Love",
-    "title": "Jason Derulo, Jawsh 685",
+    "title": "Savage Love",
+    "artist": "Jason Derulo, Jawsh 685",
     "genre": "Pop",
     "year": "2020" 
 },
 
 {
-    "artist": "Parachute",
-    "title": "John K",
+    "title": "Parachute",
+    "artist": "John K",
     "genre": "Pop",
     "year": "2020" 
 },
 
 {
-    "artist": "Believer",
-    "title": "Imagine Dragons",
+    "title": "Believer",
+    "artist": "Imagine Dragons",
     "genre": "Pop-Rock",
     "year": "2017" 
 },
 
 {
-    "artist": "Checklist",
-    "title": "MAX (Feat, Chromeo)",
+    "title": "Checklist",
+    "artist": "MAX (Feat, Chromeo)",
     "genre": "Dance-Pop",
     "year": "2019" 
 },
 
 {
-    "artist": "Eight",
-    "title": "IU",
+    "title": "Eight",
+    "artist": "IU",
     "genre": "K-Pop",
     "year": "2020" 
 },
 
 {
-    "artist": "Bad",
-    "title": "Christopher",
+    "title": "Bad",
+    "artist": "Christopher",
     "genre": "Electronic-Pop",
     "year": "2019" 
 }]
