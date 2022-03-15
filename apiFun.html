@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Api Fun</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+
+        </style>
+    </head>
+
+    <body> 
+        <!-- Texts and buttons  -->
+        <input type="text" id = "country1"> to <input type="text" id = "country2"> <input type="button" value = "GET!" onclick="getMyData()">
+        <input type="button" value = "FETCH!" onclick="getFetchData()"> <br> <br>
+        <!-- Show results from the get and fetch buttons  -->
+        <div id = "get_result"></div>
+        <div id = "fetch_result"></div>
+        <hr>
+        <div id = "information"></div>
+
+        
+        <script language = "javascript">
+
+            //Send a request to the API, retrieve some data and display the data.  
+            function getMyData() {
+
+                country = document.getElementById("country1").value;
+                exchange = document.getElementById("country2").value;
+                
+                request = new XMLHttpRequest();
+                request.open("GET", "https://open.er-api.com/v6/latest/" + country, true);
+
+
+                request.onload = function() {
+                    result = JSON.parse(this.response);
+					document.getElementById("get_result").innerHTML =  "GETTED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
+                }
+                request.send();
+            }
+            //Use fetch to do the same thing with above function 
+            function getFetchData() {
+                
+                country = document.getElementById("country1").value;
+                exchange = document.getElementById("country2").value;
+
+                res = fetch("https://open.er-api.com/v6/latest/" + country)
+                    .then (res => res.text())
+                    .then (result => 
+                    {
+                    result = JSON.parse(result)
+					document.getElementById("fetch_result").innerHTML =  "FETCHED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
+                    })
+                    .catch (error => console.log(error))
+            }
+
+            //Information.  
+            document.getElementById("information").innerHTML = "Describe the API you selected and what it does: "+ "<br>";
+            document.getElementById("information").innerHTML +=  "I chose currency exchange rate API. It returns the list of other currencies with their exchange rates that they support, given a base currency." + "<br> <br>";
+            document.getElementById("information").innerHTML += "Cite the website where you found it: "+ "<br>";
+            document.getElementById("information").innerHTML +=  "The website I found is https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/. This website shows the whole list of free api (given by professor)." + "<br>"
+            + "And the api's actual website is https://www.exchangerate-api.com/docs/overview" + "<br> <br>";
+            document.getElementById("information").innerHTML += "Describe the options you used for the API request: "+ "<br>";
+            document.getElementById("information").innerHTML +=  "I used the option that given a selected currency, returns the list of other currencies." +"<br>"
+            + "My website does if the user inputs the currency and other currency which they want to get exchange rate for, then return that exchange rate." + "<br> <br>";
+            document.getElementById("information").innerHTML += "Give two applications where this API would be helpful.: "+ "<br>";
+            document.getElementById("information").innerHTML +=  "This API is useful if you want to get specific curreny's exchange rate of other currency to exchange money for travel." + "<br>" 
+            + "Also, if you want to compare the exchange rate of other currencies when shopping in other country" + "<br> <br>";
+
+
+            
+
+            
+
+        </script> 
+
+    </body>       
