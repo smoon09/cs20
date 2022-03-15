@@ -12,9 +12,11 @@
         <!-- Texts and buttons  -->
         <input type="text" id = "country1"> to <input type="text" id = "country2"> <input type="button" value = "GET!" onclick="getMyData()">
         <input type="button" value = "FETCH!" onclick="getFetchData()"> <br> <br>
+        <div id = "currency_example"></div>
         <!-- Show results from the get and fetch buttons  -->
         <div id = "get_result"></div>
         <div id = "fetch_result"></div>
+        <div id = "error_message"></div>
         <hr>
         <div id = "information"></div>
 
@@ -23,6 +25,7 @@
 
             //Send a request to the API, retrieve some data and display the data.  
             function getMyData() {
+                document.getElementById("error_message").innerHTML =  "";
 
                 country = document.getElementById("country1").value;
                 exchange = document.getElementById("country2").value;
@@ -30,10 +33,21 @@
                 request = new XMLHttpRequest();
                 request.open("GET", "https://open.er-api.com/v6/latest/" + country, true);
 
-
                 request.onload = function() {
                     result = JSON.parse(this.response);
-					document.getElementById("get_result").innerHTML =  "GETTED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
+                    
+                    //Print error message if the input currency is not supported
+                    if(result.base_code == null ) {
+                        document.getElementById("error_message").innerHTML =  "Sorry! " + country + " is not supported!";
+                    }
+
+                    if(result.rates[exchange] != null ) {
+                        printData(result, "get_result");
+                    }
+                    else {
+                        document.getElementById("error_message").innerHTML =  "Sorry! " + exchange + " is not supported!";
+                    }
+                    
                 }
                 request.send();
             }
@@ -48,12 +62,29 @@
                     .then (result => 
                     {
                     result = JSON.parse(result)
-					document.getElementById("fetch_result").innerHTML =  "FETCHED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
+                    
+                    //Print error message if the input currency is not supported
+                    if(result.base_code == null ) {
+                        document.getElementById("error_message").innerHTML =  "Sorry! " + country + " is not supported!";
+                    }
+
+                    if(result.rates[exchange] != null ) {
+                        printData(result, "fetch_result");
+                    }
+                    else {
+                        document.getElementById("error_message").innerHTML =  "Sorry! " + exchange + " is not supported!";
+                    }
                     })
                     .catch (error => console.log(error))
             }
+            //Print exchange rate
+            function printData(result, printId) {
+                document.getElementById(printId).innerHTML =  "GETTED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
+            }
 
-            //Information.  
+            //Information. 
+            document.getElementById("currency_example").innerHTML = "Example: Type USD and AUD" + "<br>" + "<br>";
+ 
             document.getElementById("information").innerHTML = "Describe the API you selected and what it does: "+ "<br>";
             document.getElementById("information").innerHTML +=  "I chose currency exchange rate API. It returns the list of other currencies with their exchange rates that they support, given a base currency." + "<br> <br>";
             document.getElementById("information").innerHTML += "Cite the website where you found it: "+ "<br>";
@@ -65,11 +96,6 @@
             document.getElementById("information").innerHTML += "Give two applications where this API would be helpful.: "+ "<br>";
             document.getElementById("information").innerHTML +=  "This API is useful if you want to get specific curreny's exchange rate of other currency to exchange money for travel." + "<br>" 
             + "Also, if you want to compare the exchange rate of other currencies when shopping in other country" + "<br> <br>";
-
-
-            
-
-            
 
         </script> 
 
