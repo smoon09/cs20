@@ -39,15 +39,11 @@
                     //Print error message if the input currency is not supported
                     if(result.base_code == null ) {
                         document.getElementById("error_message").innerHTML =  "Sorry! " + country + " is not supported!";
-                    }
-
-                    if(result.rates[exchange] != null ) {
-                        printData(result, "get_result");
-                    }
-                    else {
+                    } else if (result.rates[exchange] == null ) {
                         document.getElementById("error_message").innerHTML =  "Sorry! " + exchange + " is not supported!";
-                    }
-                    
+                    } else {
+                        document.getElementById("get_result").innerHTML =  "GETTED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
+                    }     
                 }
                 request.send();
             }
@@ -67,20 +63,13 @@
                     //Print error message if the input currency is not supported
                     if(result.base_code == null ) {
                         document.getElementById("error_message").innerHTML =  "Sorry! " + country + " is not supported!";
-                    }
-
-                    if(result.rates[exchange] != null ) {
-                        printData(result, "fetch_result");
-                    }
-                    else {
+                    } else if (result.rates[exchange] == null ) {
                         document.getElementById("error_message").innerHTML =  "Sorry! " + exchange + " is not supported!";
+                    } else {
+                        document.getElementById("fetch_result").innerHTML =  "FETCHED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
                     }
                     })
                     .catch (error => console.log(error))
-            }
-            //Print exchange rate
-            function printData(result, printId) {
-                document.getElementById(printId).innerHTML =  "GETTED: " +"1 " + result.base_code + " = " +  + result.rates[exchange] + " " + exchange;
             }
 
             //Information. 
