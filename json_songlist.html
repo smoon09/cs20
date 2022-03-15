@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON SongList</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+            #song_box {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+
+    <body>    
+        <input type = "button" value = "Serialized List" onclick = "display_serialized()">
+        <input type = "button" value = "User-friendly List" onclick = "display_list()">
+        <select id = "genre">
+            <option value = "All">All</option>
+            <option value = "Synth-Pop">Synth-Pop</option>
+            <option value = "Dance-Pop">Dance-Pop</option>
+            <option value = "Pop-Rock">Pop-Rock</option>
+            <option value = "Space-Rock">Space-Rock</option>
+            <option value = "K-Pop">K-Pop</option>
+            <option value = "Electronic-Pop">Electronic-Pop</option>
+        </select>
+        <input type = "button" value = "Filter Genre" onclick = "filter()">
+        <div id = "serialized_string"></div>
+        <div id = "song_box"></div>
+        <div id = "filtered_genre"></div>   
+
+        <script language = "javascript">
+        var songList;
+        var str = [];
+
+        //get data from json
+        $(document).ready(function() {
+               $.get("https://smoon09.github.io/cs20/songlist.json",
+               function( data ) {
+                songList = data;
+                $("#song_box").hide();
+                $("#serialized_string").hide();
+
+            })
+        });
+    
+        //display sertalized list
+        function display_serialized() {
+            str = JSON.stringify(songList);
+            $("#song_box").hide();
+            $("#filtered_genre").hide();
+            $("#serialized_string").show();
+            $("#serialized_string").html(str);
+
+        }
+
+        //display user-friendly list
+        function display_list() {
+            document.getElementById("song_box").innerHTML = "";
+
+            $("#serialized_string").hide();
+            $("#filtered_genre").hide();
+            $("#song_box").show();
+            strHTML = "<ul>";
+            songList.forEach( function (song) {
+                strHTML += "<li>"
+                        + "Title: " + song.title + "<br>"
+                        + "Artist: " + song.artist + "<br>"
+                        + "Genre: " + song.genre + "<br>"
+                        + "Year: " + song.year + "<br>" + "<br>"
+                        + "</li>";
+            })
+            strHTML += "</ul>";
+
+            document.getElementById("song_box").innerHTML += strHTML;
+        }
+
+        //Show the lists of filtered selected genre
+        function filter() {
+            document.getElementById("filtered_genre").innerHTML = "";
+
+
+            $("#serialized_string").hide();
+            $("#song_box").hide();
+            $("#filtered_genre").show();
+            
+            var sGenre = $('#genre').val();
+
+            if (sGenre == "All") {
+                display_list();
+            } 
+            
+            else {
+                strHTML = "<ul>";
+                songList.forEach( function (song) {
+                if (sGenre  == song.genre) {
+                    strHTML += "<li>"
+                        + "Title: " + song.title + "<br>"
+                        + "Artist: " + song.artist + "<br>"
+                        + "Genre: " + song.genre + "<br>"
+                        + "Year: " + song.year + "<br>" + "<br>"
+                        + "</li>";
+                }
+            })
+            strHTML += "</ul>";
+
+            document.getElementById("filtered_genre").innerHTML += strHTML;
+
+            }
+
+
+
+        }
+
+        </script> 
+
+    </body>       
