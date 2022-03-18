@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<title>Jade Delight</title>
+</head>
+
+<body>
+<script>
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 6.25),
+	new MenuItem("Moo Shi Chicken", 7.5),
+	new MenuItem("Fried Rice", 2.85)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function td(content, className="")
+{
+	return "<td class = '" + className + "'>" + content + "</td>";
+}
+
+// ADDED FROM HERE
+$(document).ready(function() {
+	//hide address info if pickup and show address info if delivery
+	$(".address").hide();
+	$('input:radio[name="p_or_d"]').click(function() {
+		pick_or_delivery();
+	})
+
+	//if select option changes (user pick menu), update total cost
+	selectChange();
+
+	//verify info and display order info in new blank page
+	submitOrder();
+})
+
+function selectChange() {
+	$('td[class = "selectQuantity"]').change(function () {
+		var str = event.target.name;
+		//get table index of selected menu
+		var targetIndex = str.charAt(str.length - 1);
+		//get number of selected menu
+		var numItem = event.target.value;
+		//get price of selected menu
+		var targetPrice = menuItems[targetIndex].cost;
+		//get array that has total cost of selected menu
+		var costArr = document.getElementsByName("cost");
+		//calculate total cost of selected menu
+		costArr[targetIndex].value = targetPrice * numItem;
+
+		//update subtotal, tax, total
+		updateReceipt(costArr);		
+	})
+		
+}
+
+function updateReceipt(costArr) {
+	//calculate subtotal
+	var subtotal = 0;
+		var costVal = 0;
+		for (var i = 0; i < costArr.length; i++) {
+			if (costArr[i].value != "") {
+				costVal = parseFloat(costArr[i].value);
+				subtotal += costVal;
+			}
+		}
+
+		document.getElementById("subtotal").value = subtotal.toFixed(2);
+		
+		var tax_subtotal = 0.0625 * subtotal;
+		document.getElementById("tax").value = tax_subtotal.toFixed(2);
+
+		var total = tax_subtotal + subtotal;
+		document.getElementById("total").value = total.toFixed(2);
+
+}
+
+function submitOrder() {
+	
+	$('input[type="button"]').click(function () {
+        var x = verification();
+			if (x) {
+				displayOrder();
+			}	
+	})
+}
+
+function displayOrder() {
+    var w = window.open('', '', 'width=450, height=450, resizeable');
+
+	var orderText = "Your Order:" + "<br>";
+	var costArr = document.getElementsByName("cost");
+
+	for (let i = 0; i < costArr.length; i++) {
+		if (document.getElementsByTagName("select")[i].value != 0){
+			orderText += document.getElementsByTagName("select")[i].value.toString();
+			orderText += " x " + menuItems[i].name;
+			orderText += " = $" + costArr[i].value + "<br>";
+		}
+	}
+	orderText += "<br>" + "Subtotal: $" + document.getElementById("subtotal").value + "<br>";
+	orderText += "Tax: $" + document.getElementById("tax").value + "<br>";
+	orderText += "Total: $" + document.getElementById("total").value + "<br>" + "<br>";
+	orderText += "Your order will be delivered by:" + "<br>";
+	orderText += pickupDeliveryTime() + "<br>" + "<br>";
+	orderText += "Thanks so much for your order!";
+    w.document.write(orderText);
+    w.document.close(); 
+
+}
+
+//calculate pickup or delivery time
+function pickupDeliveryTime() {
+	var orderTime;
+
+	var x = $('input:radio[name="p_or_d"]:checked').val();
+	(x == "delivery") ? orderTime = 30 : orderTime = 15;
+
+	var currDate = new Date();
+	var expectedDate = new Date(currDate.getTime() + orderTime * 60000);
+
+	var confirmDate = expectedDate.getFullYear()+'-'+ (expectedDate.getMonth()+1) + '-' + expectedDate.getDate() + ' '
+					+ expectedDate.getHours() + ':' + expectedDate.getMinutes();
+
+	return confirmDate;
+}
+
+function validPhone (phoneNumber) {
+	if (phoneNumber.length == 7) return true;
+	if (phoneNumber.length == 10) return true;
+}
+
+function verification() {
+	var verify_form = true;
+
+	//verify phone number
+	var phoneNum = $("[name='phone']").val();
+	var rephoneNum = phoneNum.replace(/[^0-9]+/, '');
+	var verPhone = false;
+	verPhone = validPhone(rephoneNum);
+
+	if (!verPhone) {
+		alert("Please enter valid phone number");
+		verify_form = false;
+	}
+
+	//verify lastname
+	var lastName = $("input:text[name='lname']").val();
+	if (lastName == ""){
+		alert("Please enter your last name");
+		verify_form = false;
+	}
+
+
+	//verify if blank order
+	if (document.getElementById("total").value == 0){
+		alert("Please choose at least one item");
+		verify_form = false;
+	}
+
+	//verify address
+	var x = $('input:radio[name="p_or_d"]:checked').val();
+	if (x == "delivery") {
+		var streetName = $("input:text[name='street']").val();
+		var cityName = $("input:text[name='city']").val();
+
+		if ((streetName == "") || (cityName == "")) {
+			alert("Please enter your entire address");
+            verify_form = false;
+		}
+	}
+
+	return verify_form;
+
+}
+
+//delivery option have address option
+function pick_or_delivery () {
+	if ($('input:radio[name="p_or_d"]').is(':checked')) {
+		var x = $('input:radio[name="p_or_d"]:checked').val();
+		if (x == "pickup") {
+			$(".address").hide();
+
+		}
+		if (x == "delivery"){
+			$(".address").show();
+		}
+	}
+}
+
+	
+</script>
+
+<h1>Jade Delight</h1>
+<form>
+
+<p class="userInfo"><label>First Name:</label> <input type="text"  name='fname' /></p>
+<p class="userInfo"><label>Last Name*</label>:  <input type="text"  name='lname' /></p>
+<p class="userInfo address"><label>Street*</label>: <input type="text" name='street' /></p>
+<p class="userInfo address"><label>City*</label>: <input type="text" name='city' /></p>
+<p class="userInfo"><label>Phone*</label>: <input type="text"  name='phone' /></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script>
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr>";
+	  s += td(makeSelect("quan" + i, 0, 10),"selectQuantity");
+	  s += td(menuItems[i].name, "itemName");
+	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
+	  s += td("$<input type='text' name='cost'/>", "totalCost");
+	  s+= "</tr>";
+  }
+  document.writeln(s);
+</script>
+</table>
+<p class="subtotal totalSection"><label>Subtotal</label>: 
+   $ <input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p class="tax totalSection"><label>Mass tax 6.25%:</label>
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p clas="total totalSection"><label>Total:</label> $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "button" value = "Submit Order" />
+
+</form>
+</body>
+</html>
