@@ -99,6 +99,7 @@ function submitOrder() {
 	$('input[type="button"]').click(function () {
         var x = verification();
 			if (x) {
+				alert("Thanks so much for your order!");
 				displayOrder();
 			}	
 	})
@@ -122,7 +123,6 @@ function displayOrder() {
 	orderText += "Total: $" + document.getElementById("total").value + "<br>" + "<br>";
 	orderText += "Your order will be delivered by:" + "<br>";
 	orderText += pickupDeliveryTime() + "<br>" + "<br>";
-	orderText += "Thanks so much for your order!";
     w.document.write(orderText);
     w.document.close(); 
 
