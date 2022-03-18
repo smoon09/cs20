@@ -65,7 +65,8 @@ function selectChange() {
 		//get array that has total cost of selected menu
 		var costArr = document.getElementsByName("cost");
 		//calculate total cost of selected menu
-		costArr[targetIndex].value = (targetPrice * numItem).toFixed(2);
+		var updateCost = targetPrice * numItem;
+		costArr[targetIndex].value = updateCost.toFixed(2);
 
 		//update subtotal, tax, total
 		updateReceipt(costArr);		
