@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "mongodb": "^4.5.0"
-  }
+  "name": "ticker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tickerForm2.js",
+  "scripts": {
+    "test": "load tickerForm2.js"
+  },
+  "author": "",
+  "license": "ISC"
 }
